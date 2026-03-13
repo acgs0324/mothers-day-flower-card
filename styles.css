@@ -66,7 +66,7 @@ body {
 
 .card {
   position: absolute;
-  top: max(12px, env(safe-area-inset-top));
+  top: calc(env(safe-area-inset-top) + 20vh);
   left: 50%;
   transform: translateX(-50%);
   width: min(94vw, 420px);
@@ -590,7 +590,6 @@ button.secondary {
 
 @media (min-width: 768px) {
   .card {
-    top: 24px;
     width: min(86vw, 460px);
     padding: 18px 18px 16px;
   }
