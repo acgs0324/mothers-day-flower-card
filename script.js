@@ -31,6 +31,8 @@ const butterflyPalettes = [
 
 let flowerCount = 0;
 const maxFlowers = 90;
+const initialFlowerReduction = 40;
+const butterflySizeScale = 0.7;
 
 function rand(min, max) {
   return Math.random() * (max - min) + min;
@@ -132,7 +134,8 @@ function createFlower(xPercent, scale = 1, delay = 0) {
 
 function seedGarden() {
   const isMobile = window.innerWidth <= 768;
-  const total = isMobile ? 68 : 56;
+  const baseTotal = isMobile ? 68 : 56;
+  const total = Math.max(0, baseTotal - initialFlowerReduction);
   const positions = [];
 
   for (let i = 0; i < total; i += 1) {
@@ -191,7 +194,7 @@ function createSparkles() {
 function createButterfly(delay = 0) {
   const butterfly = document.createElement('div');
   const palette = pick(butterflyPalettes);
-  const size = rand(38, 72);
+  const size = rand(38, 72) * butterflySizeScale;
 
   butterfly.className = 'butterfly';
   butterfly.style.setProperty('--wingColor', butterflyGradient(palette));
